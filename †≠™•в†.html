@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang=“en”>
+<head>
+<meta charset=“UTF-8”>
+<title>HTML Form</title>
+<link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <div class="ank">
+<!-- HTML-форма с полями ввода имени, электронной почты и сообщения. -->
+<form action="/action_page.php" method=“POST”>
+    <h4>Укажите Ваш пол</h4>
+  <form>
+   <input type="radio" name="gender" value="male" checked> Мужчина<br>
+   <input type="radio" name="gender" value="female"> Женщина<br>
+<label for=“name”>Ваше Имя:</label><br>
+<input type=“text” id=“name” name=“name”  placeholder=Имя><br>
+
+<form><input type=“number” min=“0” max=“150” step=“1” placeholder=Возраст></form>
+
+ <label for="email">Укажите институт в котором учитесь</label><br>
+<select name="cars">
+    <option value="volvo">ВШЭ</option>
+    <option value="saab">МГУ</option>
+    <option value="fiat">МЭИ</option>
+    <option value="audi">МТУСИ</option>
+   </select>
+<br>
+
+<form>
+    <label for="email">Выберите верное</label><br>
+    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+    <label for="vehicle1"> Профессионал программирования</label><br>
+    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+    <label for="vehicle2"> Что-то умею</label><br>
+    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+    <label for="vehicle3"> Начинающий уровень</label>
+   </form>
+    <label for="message">Расскажите о себе:</label><br>
+    <textarea id="message" name="message"></textarea><br>
+    <label for="email">Ваша почта:</label><br>
+    <input type="email" id="email" name="email"  placeholder=Почта><br>
+    <!-- Кнопка «Отправить» -->
+    <form action="action_page.php" target="_blank">
+        <button>Отправить</button>
+       </form>
+</form>
+</div>
+<script>
+    // Код JavaScript для обработки отправки формы и отображения результата
+    document.querySelector("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        // Получить данные формы const formData = new FormData(это);
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "/submit");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onload = function() {
+if (xhr.status === 200) {
+var response = JSON.parse(xhr.responseText);
+console.log(response);
+} else {
+alert("Error submitting form: " + xhr.status);
+}
+};
+
+        // Отправить данные на сервер
+        var formDataJSON = JSON.stringify(formData);
+        xhr.send(formDataJSON);
+        
+    });
+</script>
+<script src=“https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js”></script>
+
+</body>
+</html>
